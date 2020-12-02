@@ -1,0 +1,57 @@
+﻿<Window x:Class="Laba_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Laba_2"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Laba_2" Height="450" Width="800">
+        <Grid x:Name="LayoutRoot" Background="White">
+            
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation = "Vertical" Grid.ColumnSpan="2">
+                <StackPanel Orientation = "Horizontal">
+                    <Button Content="Загрузить" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" Click="DownloadFileOnClick"/>
+                    <Button Content="Обновить" HorizontalAlignment="Left" VerticalAlignment="Top" Click="BtnUpdateDataOnClick" Margin="10"/>
+                    <Button Content="Сохранить" HorizontalAlignment="Left" VerticalAlignment="Top" Click="BtnSaveFileOnClick" Margin="10"/>
+                </StackPanel>
+                <DataGrid x:Name="dataGridView1" 
+                        IsReadOnly="True" 
+                        CanUserAddRows="False" 
+                        SelectionMode="Single"    
+                        VerticalAlignment="Top"        
+                        Margin="0 0 0 0" 
+                          MaxHeight="400"
+                        AutoGenerateColumns="False" 
+                        ItemsSource="{Binding}"  
+                        RowHeaderWidth="0"    
+                        ScrollViewer.CanContentScroll="True" 
+                        ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                        ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                        Height="{Binding ElementName=gridClientsContainer, Path=ActualHeight}" Width="660" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+                    <DataGrid.ItemContainerStyle>
+                        <Style TargetType="DataGridRow">
+                            <EventSetter Event="MouseDoubleClick" Handler="OnRowDoubleClick"/>
+                        </Style>
+                    </DataGrid.ItemContainerStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Идентификатор" IsReadOnly="True" Binding="{Binding Id}" CanUserSort="False"/>
+                        <DataGridTextColumn Header="Название угрозы" IsReadOnly="True"  Binding="{Binding Name}" CanUserSort="False"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
+                    <Label Grid.Row="0" Margin="2">
+                        <Label.Content>
+                            <Binding Path="CurrentPage">
+                                <Binding.StringFormat>Current Page: {0}</Binding.StringFormat>
+                            </Binding>
+                        </Label.Content>
+                    </Label>
+                    <Button Content="Предыдущая" Click="OnPreviousClicked" Margin="10"/>
+                    <Button Content="Следующая" Click="OnNextClicked" Margin="10"/>
+                </StackPanel>
+            </StackPanel>
+            </ScrollViewer>
+        </Grid>
+</Window>

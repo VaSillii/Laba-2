@@ -1,0 +1,45 @@
+﻿<Window x:Class="Laba_2.ReportUpdateDetail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Laba_2"
+        mc:Ignorable="d"
+        Title="ReportUpdateDetail" Height="450" Width="800">
+    <Grid>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Border MinWidth="450" MaxWidth="700" CornerRadius="20" Margin="20" Padding="40" VerticalAlignment="Center" Background="#fff">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+                    </Border.Effect>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Детальное описание угрозы:" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 20"></TextBlock>
+                        <DataGrid 
+                                x:Name="DataGridReportUpdateDetail"
+                                IsReadOnly="True" 
+                                CanUserAddRows="False" 
+                                SelectionMode="Single"    
+                                VerticalAlignment="Top"        
+                                Margin="0 0 0 0" 
+                                MaxWidth="600"
+                                AutoGenerateColumns="False" 
+                                ItemsSource="{Binding}"  
+                                RowHeaderWidth="0"    
+                                ScrollViewer.CanContentScroll="True" 
+                                ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                                Height="{Binding ElementName=gridClientsContainer, Path=ActualHeight}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Name}" Header="Параметр" MinWidth="100" CanUserSort="False"/>
+                                <DataGridTextColumn Binding="{Binding LastVal}" Header="Было" MinWidth="100" CanUserSort="False"/>
+                                <DataGridTextColumn Binding="{Binding NewVal}" Header="Стало" MinWidth="100" CanUserSort="False"/>
+                                
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
